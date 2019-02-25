@@ -1,0 +1,60 @@
+package birdshop;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Bird_Shop {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		ChromeOptions op=new ChromeOptions();
+		op.addArguments("--disable-notifications");
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\SeleniumJava\\chromedriver.exe");
+		
+		WebDriver driver=new ChromeDriver(op);
+		driver.get("https://www.marshallspetzone.com/");
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		Actions cl=new Actions(driver);
+		cl.moveToElement(driver.findElement(By.xpath("//*[@id=\"cbp-hrmenu\"]/ul/li[4]/a"))).build().perform();
+		Thread.sleep(2000);
+		
+		cl.click(driver.findElement(By.xpath("//*[@id=\"cbp-hrmenu\"]/ul/li[4]/div/div/div/div/div[1]/div/div/div/a"))).build().perform();
+		Thread.sleep(5000);
+		
+		String fir_product=driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[1]/div/div[2]/h5/a")).getText();
+		System.out.println(fir_product);
+		
+		driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[1]/div/div[2]/div[3]/a")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[3]/div/span")).click();
+		Thread.sleep(5000);
+		
+		String sec_product= driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[6]/div/div[2]/h5/a")).getText();
+		System.out.println(sec_product);
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[6]/div/div[2]/div[3]/a/span")).click();
+		
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[3]/div/a/span")).click();
+		Thread.sleep(5000);
+		driver.switchTo().activeElement();
+		Thread.sleep(5000);
+		if(driver.getPageSource().contains(fir_product)&& driver.getPageSource().contains(sec_product))
+		{
+			System.out.println("Products Verified");
+		}
+		else
+		{
+			System.out.println("Not Verified");
+		}
+		driver.close();
+	
+	}
+
+}

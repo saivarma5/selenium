@@ -1,0 +1,105 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchFrameException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class GoIbiboCLass {
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "F:\\Eclipse1\\Selenium\\SeleniumBasic\\lib\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.goibibo.com/flights/");
+		driver.manage().window().maximize();
+		Thread.sleep(1000);
+		System.out.println(driver.getTitle());
+		driver.findElement(By.xpath("//span[text()='Round trip']")).click();
+		Thread.sleep(1500);
+		driver.findElement(By.xpath("//input[@id='gosuggest_inputSrc']")).sendKeys("Coimbatore");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//ul[@id='react-autosuggest-1']/li[1]")).click();
+		// or8
+		// driver.findElement(By.xpath("//ul[@id='react-autosuggest-1']/li[@id='react-autosuggest-1-suggestion--0']")).click();
+
+		driver.findElement(By.xpath("//input[@id='gosuggest_inputDest']")).sendKeys("Bangalore");
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//ul[@id='react-autosuggest-1']/li[1]")).click();
+
+		driver.findElement(By.xpath("//input[@class='inputSrch curPointFlt ' and @placeholder='Departure']")).click();
+
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//div[@aria-label='Tue Feb 26 2019']")).click();
+
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//div[@aria-label='Thu Feb 28 2019']")).click();
+
+		driver.findElement(By.xpath(
+				"//div[@class='dF whiteBg fl col-sm-5 justifyBetween ht45 alignItemsCenter brdrTpBtmRt curPointFlt width20']"))
+		.click();
+
+		Thread.sleep(1000);
+		for (int i = 0; i < 2; i++) {
+			driver.findElement(By.xpath("//button[@class='fl plusSpin brdrTpBtmRt'  and @id='adultPaxPlus']")).click();
+		}
+
+		Select s = new Select(
+				driver.findElement(By.xpath("//select[@class='custSelect width100 whiteBg padTB5 padLR10']")));
+
+		s.selectByValue("B");
+
+		driver.findElement(By.xpath("//button[@value='Search']")).click();
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//i[@class='fl posAbs icon-close1 ico17 curPoint fb whiteBg closePers black']"))
+		.click();
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//a[@href='javascript:void(0);' and @id='sortByPriceOnw']")).click();
+
+		Thread.sleep(1500);
+
+		driver.findElement(By.xpath("//a[@href='javascript:void(0);' and @id='sortByPriceRet']")).click();
+
+		Thread.sleep(1500);
+		
+		boolean a=IsTestElementPresent(driver);
+        if(a) {
+		driver.findElement(By.xpath("//div[@class='close tablecell']")).click();
+        }
+		
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"onwFltContainer\"]/div[3]/div[2]/div[3]/div[2]/label/div")).click();
+
+		driver.findElement(By.xpath("//*[@id=\"retFltContainer\"]/div[3]/div[2]/div[3]/div[2]/label/div")).click();
+
+		driver.findElement(By.xpath("//div[@id='fltTcktVoucher']/div[3]/div[1]/div[2]/input")).click();
+        
+		Thread.sleep(2000);
+		System.out.print("Coimbatore flight departure time is:");
+		String dep1=driver.findElement(By.xpath("//*[@id=\"content\"]/div/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div[1]/div/div[2]/div[2]/div[1]/div[2]/span[2]/span")).getText();
+		System.out.println(dep1);
+		
+		System.out.print("Bangalore reaching time is:");
+		String arr1=driver.findElement(By.xpath("//*[@id=\"content\"]/div/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div[1]/div/div[2]/div[3]/div[2]/div[1]/div[5]/span[2]/span")).getText();
+	System.out.println(arr1);
+	
+	}
+
+	
+	public static boolean IsTestElementPresent(WebDriver driver)
+	{
+	    try
+	    {
+	    	driver.switchTo().frame("notification-frame-31761cc0");
+	        return true;
+	    }
+	    catch (NoSuchFrameException e)
+	    {
+	        return false;
+	    }
+	}
+}

@@ -1,0 +1,401 @@
+Axis bank:
+
+package Learning;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AxisBank {
+
+       public static void main(String[] args) throws InterruptedException {
+              // TODO Auto-generated method stub
+
+              System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+              WebDriver driver=new ChromeDriver();
+              driver.get("https://www.axisbank.com/");
+              driver.manage().window().maximize();
+              String Title=driver.getTitle();
+              System.out.println(Title);
+              Thread.sleep(2000);
+              //driver.switchTo().frame("nvpush_popup_background_iframe");
+       //driver.findElement(By.xpath("//body[@class=\"homeBody\"]//div[@id=\"nvpush_cross\"]")).click();
+              driver.findElement(By.id("nvpush_cross")).click();
+              driver.switchTo().defaultContent();
+              Thread.sleep(5000);
+              driver.findElement(By.xpath("//a[@class=\"clickDetails js-clickdetail iconLink search lnkSmartSearch\"]")).click();
+              Thread.sleep(2000);
+              driver.findElement(By.xpath("//input[@class=\"headsearch1\"]")).click();
+              driver.findElement(By.xpath("//input[@class=\"headsearch1\"]")).sendKeys("fd ");
+              Thread.sleep(2000);
+              driver.findElement(By.xpath("//a[@href=\"https://www.axisbank.com/personal/calculators/fd-monthly-investment-calculator\"]")).click();
+              Thread.sleep(5000);
+              driver.findElement(By.xpath("//div[@class=\"input-group\"]//input[@name=\"ctl00$Body$C002$txtAmount\"]")).clear();
+              driver.findElement(By.xpath("//div[@class=\"input-group\"]//input[@name=\"ctl00$Body$C002$txtAmount\"]")).sendKeys("50000");
+              //Thread.sleep(6000);
+              driver.findElement(By.xpath("//a[@id=\"ctl00_Body_C002_btnCal\"]")).click();
+              int oops=driver.findElements(By.xpath("//p[contains(text(),'Something went wrong. Please visit after sometime.')]")).size();
+              if(oops==1){
+                     driver.navigate().back();
+                     Thread.sleep(6000);
+                     String name=driver.findElement(By.xpath("//div[@class=\"piechart_container\"]//span[@class=\"maturity_text\"]")).getText();
+                     System.out.println(name);
+                     Thread.sleep(2000);
+                     String Amount=driver.findElement(By.xpath("//div[@class=\"piechart_container\"]//span[@class=\"maturity_amt grossTotal\"]")).getText();
+                     System.out.println(Amount);
+                     driver.close();
+              }
+              
+              else{
+                     String name=driver.findElement(By.xpath("//div[@class=\"piechart_container\"]//span[@class=\"maturity_text\"]")).getText();
+                     System.out.println(name);
+                     Thread.sleep(2000);
+                     String Amount=driver.findElement(By.xpath("//div[@class=\"piechart_container\"]//span[@class=\"maturity_amt grossTotal\"]")).getText();
+                     System.out.println(Amount);
+                     driver.close();
+              }
+       }
+
+}
+
+
+Goibio:
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class GoIbibo {
+
+                public static void main(String[] args) throws InterruptedException {
+                                // TODO Auto-generated method stub
+
+                                System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+                                WebDriver driver=new ChromeDriver();
+                                driver.get("https://www.goibibo.com/");
+                                driver.manage().window().maximize();
+                                String Title=driver.getTitle();
+                                System.out.println(Title);
+                                driver.findElement(By.xpath("//input[@id=\"gi_roundtrip_label\"]")).click();
+                                Thread.sleep(2000);
+                                driver.findElement(By.xpath("//input[@class=\"form-control inputTxtLarge inputSrc\"]")).click();
+                                driver.findElement(By.xpath("//input[@class=\"form-control inputTxtLarge inputSrc\"]")).sendKeys("Chennai (MAA)");
+                                Thread.sleep(2000);
+                                driver.findElement(By.xpath("//input[@class=\"form-control inputTxtLarge inputDest\"]")).click();
+                                driver.findElement(By.xpath("//input[@class=\"form-control inputTxtLarge inputDest\"]")).sendKeys("London (LON)");
+                                Thread.sleep(3000);                       
+                                driver.findElement(By.xpath("//div[@class=\"shCalenderBox col-md-5 col-sm-5 col-xs-12 pad0 marginTB10 marginAdjust\"]/div[1]//input[@class=\"form-control inputTxtLarge widgetCalenderTxt\"]")).click();
+                                driver.findElement(By.xpath("//div[@id=\"fare_20181212\"]")).click();
+                                Thread.sleep(2000);
+                                driver.findElement(By.xpath("//div[@class=\"shCalenderBox col-md-5 col-sm-5 col-xs-12 pad0 marginTB10 marginAdjust\"]/div[2]//input[@class=\"form-control inputTxtLarge widgetCalenderTxt\"]")).click();
+                                driver.findElement(By.xpath("//div[@id=\"fare_20181215\"]")).click();
+                                Thread.sleep(2000);
+                                driver.findElement(By.xpath("//span[@class=\"ico15 grey padT5 padL10 fl\"]")).click();
+                                Thread.sleep(2000);
+                                driver.findElement(By.xpath("//input[@id=\"adultPaxBox\"]")).clear();
+                                driver.findElement(By.xpath("//input[@id=\"adultPaxBox\"]")).sendKeys("2");
+                                driver.findElement(By.xpath("//a[@id=\"pax_close\"]")).click();
+                                Thread.sleep(2000);
+                                driver.findElement(By.xpath("//button[@type=\"submit\"]")).click();
+                                Thread.sleep(30000);
+                                System.out.println("MAS Arrival Time is : ");
+                    String MASTime= driver.findElement(By.xpath("//div[@class=\"cardContainer\"]/div[4]//div[@class=\"col-md-10 col-sm-10 col-xs-10 padTB5 padLR0\"]//div[@class=\"col-md-4 col-sm-4 col-xs-4 wid32\"]//span[@class=\"fb\"]")).getText();
+                                System.out.println(MASTime);
+                   Thread.sleep(5000);
+                   System.out.println("LON Departure Time is :");
+                   String LONTime=driver.findElement(By.xpath("//div[@class=\"cardContainer\"]/div[4]//div[@class=\"col-md-10 col-sm-10 col-xs-10 padTB5 padLR0\"]//div[@class=\"col-md-3 col-sm-3 col-xs-3 padLR0 wid26\"]//span[@class=\"fb\"]")).getText();
+                   System.out.println(LONTime);
+                   Thread.sleep(5000);
+                   String LONTime1=driver.findElement(By.xpath("//div[@class=\"cardContainer\"]/div[4]//div[@class=\"col-md-10 col-sm-10 col-xs-10 padLR0\"]//div[@class=\"col-md-4 col-sm-4 col-xs-4 wid32\"]//span[@class=\"fb\"]")).getText();
+                   System.out.println(LONTime1);
+                   Thread.sleep(5000);
+                   String MASTime1=driver.findElement(By.xpath("//div[@class=\"cardContainer\"]/div[4]//div[@class=\"col-md-10 col-sm-10 col-xs-10 padLR0\"]//div[@class=\"col-md-3 col-sm-3 col-xs-3 padLR0 wid26\"]//span[@class=\"fb\"]")).getText();
+                   System.out.println(MASTime1);
+                   Thread.sleep(6000);
+                   driver.findElement(By.xpath("//div[@class=\"cardContainer\"]/div[4]//div[@class=\"fl width100 padTB10 padR10\"]//input[@class=\"button orange fr \"]")).click();
+                   Thread.sleep(10000);
+                   driver.findElement(By.xpath("//div/div[1][@class=\"flt-details\"]//a[@class=\"fr pad5 mobTxtRight blue ico12 txtUln\"]")).click();
+                   Thread.sleep(5000);
+                   driver.findElement(By.xpath("//a[@class=\"goTabLink \"]")).click();
+                   Thread.sleep(10000);
+                //  String name=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//span[@class=\"fl fb black ico13\"]")).getText();
+                  // System.out.println(name);
+                   String name1=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"cstable frtable ico12\"]//div[@class=\"Title black padB10\"]")).getText();
+                   System.out.println(name1);
+                   String name2=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"cstable frtable ico12\"]//div[2]//span[@class=\"cscell frcell\"]")).getText();
+                   System.out.println(name2);
+                   String name3=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"cstable frtable ico12\"]//div[2]//span//span")).getText();
+                   System.out.println(name3);
+                   String name4=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"cstable frtable ico12\"]//div[3]//span[@class=\"cscell frcell\"]")).getText();
+                   System.out.println(name4);
+                   String name5=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"cstable frtable ico12\"]//div[3]//span[@class=\"cscell frcell txtRight bg-greyLtest2\"]")).getText();
+                   System.out.println(name5);
+                   Thread.sleep(2000);
+       String Canceltitle=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"frtable cstable ico12\"]//div[@class=\"Title black padB10\"]")).getText();
+       System.out.println(Canceltitle);
+       String CancelGoibiboTitle=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"frtable cstable ico12\"]//span[contains(text(),'Goibibo Fee')]")).getText();
+       System.out.println(CancelGoibiboTitle);
+       String CancelGoibiboFee=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"frtable cstable ico12\"]//div[2]//span[@class=\"cscell frcell txtRight bg-greyLtest2\"]")).getText();
+       System.out.println(CancelGoibiboFee);
+       String CancelAirLineTitle=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"frtable cstable ico12\"]/div[3]//span[@class=\"cscell frcell\"]")).getText();
+       System.out.println(CancelAirLineTitle);
+       Thread.sleep(2000);
+       String CancelAirLineFee=driver.findElement(By.xpath("//div[@class=\"fareRulesTable goTabContent\"]/div[1]//div[@class=\"frtable cstable ico12\"]//div[3]//span[@class=\"cscell frcell txtRight bg-greyLtest2\"]")).getText();
+       System.out.println(CancelAirLineFee);
+       Thread.sleep(2000);
+       driver.switchTo().defaultContent();
+       driver.quit();
+                }
+
+}
+
+1)            GO IBIBO
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class IBIBO 
+{
+
+       public static void main(String[] args) throws InterruptedException 
+       {
+              System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\SeleniumJava\\chromedriver.exe");
+              WebDriver driver= new ChromeDriver();
+              
+              driver.get("https://www.goibibo.com/"); 
+              driver.manage().window().maximize();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//input[@id='gi_roundtrip_label']")).click();
+              
+              driver.findElement(By.xpath("//input[@id='gosuggest_inputSrc']")).click();
+              driver.findElement(By.xpath("//input[@id='gosuggest_inputSrc']")).sendKeys("CHENNAI");
+              Thread.sleep(1000);
+       driver.findElement(By.xpath("//input[@id='gosuggest_inputSrc']")).sendKeys(Keys.chord(Keys.ARROW_DOWN, Keys.ENTER));
+              
+              driver.findElement(By.xpath("//input[@id='gosuggest_inputDest']")).click();
+              driver.findElement(By.xpath("//input[@id='gosuggest_inputDest']")).sendKeys("LONDON");
+              Thread.sleep(1000);
+       driver.findElement(By.xpath("//input[@id='gosuggest_inputDest']")).sendKeys(Keys.chord(Keys.ARROW_DOWN, Keys.ENTER));
+              
+              driver.findElement(By.xpath("//div[@id='fare_20190120']")).click();
+              driver.findElement(By.xpath("//div[@id='fare_20190221']")).click();
+              
+              driver.findElement(By.xpath("//span[@class='ico15 grey padT5 padL10 fl']")).click();
+              driver.findElement(By.xpath("//button[@class='fl plusSpin']")).click();
+              driver.findElement(By.xpath("//a[@class='icon-cancel-circle fr marginT10 marginR10 fr greyDr mobdn']")).click();
+              
+              driver.findElement(By.xpath("//select[@class='form-control selectLarge width100']")).click();
+              driver.findElement(By.xpath("//select[@class='form-control selectLarge width100']")).sendKeys("ECONOMY");
+              Thread.sleep(1000);
+              driver.findElement(By.xpath("//select[@class='form-control selectLarge width100']")).sendKeys(Keys.ENTER);
+              
+              driver.findElement(By.xpath("//button[@id='gi_search_btn']")).click();
+              Thread.sleep(3000);
+              
+              String A= driver.findElement(By.xpath("(//span[@class='fb'])[1]")).getText();
+              System.out.println("Departure Time from Chennai is " +A);
+                     
+              String B= driver.findElement(By.xpath("(//span[@class='fb'])[4]")).getText();
+              System.out.println("Arrival Return Time at Chennai is " +B);
+              
+              driver.findElement(By.xpath("(//input[@class='button orange fr '])[1]")).click();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("(//a[text()='Baggage and Fare Rules'])[1]")).click();
+              Thread.sleep(1000);
+              driver.findElement(By.xpath("//a[@id='fltFareRulesTab']")).click();
+              Thread.sleep(2000);
+              
+              driver.close();
+              
+              
+       }
+
+}
+
+2)            CLEAR TRIP
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Trip 
+{
+       public static void main(String[] args) throws InterruptedException
+       {
+              System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\SeleniumJava\\chromedriver.exe");
+              WebDriver driver= new ChromeDriver();
+              
+              driver.get("https://www.cleartrip.com/");
+              driver.manage().window().maximize();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//input[@id='RoundTrip']")).click();
+              
+              driver.findElement(By.xpath("//input[@id='FromTag']")).click();
+              driver.findElement(By.xpath("//input[@id='FromTag']")).sendKeys("CHENNAI");
+              Thread.sleep(5000);
+              driver.findElement(By.xpath("//input[@id='FromTag']")).sendKeys(Keys.ENTER);
+              
+              driver.findElement(By.xpath("//input[@id='ToTag']")).sendKeys("MUNICH");
+              Thread.sleep(5000);
+             driver.findElement(By.xpath("//input[@id='FromTag']")).sendKeys(Keys.chord(Keys.ARROW_DOWN, Keys.ENTER));
+              
+              driver.findElement(By.xpath("//input[@title='Depart date']")).click();
+              driver.findElement(By.xpath("(//a[text()='15'])[2]")).click();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//input[@title='Return date']")).click();
+              driver.findElement(By.xpath("(//a[text()='18'])[2]")).click();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//select[@id='Adults']")).click();
+              driver.findElement(By.xpath("//select[@id='Adults']")).sendKeys("3", Keys.chord(Keys.ENTER));
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//input[@id='SearchBtn']")).click();
+              Thread.sleep(15000);
+              
+              driver.findElement(By.xpath("(//button[@class='booking'])[1]")).click();
+              Thread.sleep(8000);
+              
+              driver.findElement(By.xpath("//a[text()='more info']")).click();
+              
+              driver.switchTo().frame("modal_window");
+              String A= driver.findElement(By.xpath("//p[@rel='bTooltip'])[2]")).getText();
+              System.out.println("Baggage Allowance is " +A);
+              
+              driver.close();
+              
+       }
+
+}
+
+3)            MAKE MY TRIP
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Trips 
+{
+       public static void main(String[] args) throws InterruptedException 
+       {
+              System.setProperty("webdriver.chrome.driver", "C:\\\\Program Files (x86)\\\\SeleniumJava\\\\chromedriver.exe");
+              WebDriver driver = new ChromeDriver();
+              
+              driver.manage().window().maximize();
+              
+              driver.get("https://www.makemytrip.com/");
+              Thread.sleep(9000);
+              
+              driver.findElement(By.xpath("//label[@for='switch__input_2']")).click();
+              Thread.sleep(5000);
+              
+              driver.findElement(By.xpath("//input[@id='hp-widget__sfrom']")).click();
+              driver.findElement(By.xpath("//input[@id='hp-widget__sfrom']")).sendKeys("CHENNAI");
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//input[@id='hp-widget__sfrom']")).sendKeys(Keys.ENTER);
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//input[@id='hp-widget__sTo']")).click();
+              Thread.sleep(2000);
+              driver.findElement(By.xpath("//input[@id='hp-widget__sTo']")).sendKeys("MUMBAI");
+              Thread.sleep(2000);
+              driver.findElement(By.xpath("//input[@id='hp-widget__sTo']")).sendKeys(Keys.ENTER);
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("(//a[text()='14'])[1]")).click();
+              
+              driver.findElement(By.xpath("//input[@id='hp-widget__return']")).click();
+              driver.findElement(By.xpath("(//a[text()='16'])[3]")).click();
+              
+              driver.findElement(By.xpath("//input[@value='1 | Economy']")).click();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//*[@id=\"js-adult_counter\"]/li[2]")).click();
+              driver.findElement(By.xpath("//*[@id=\"js-child_counter\"]/li[2]")).click();
+              driver.findElement(By.xpath("//span[@id='economy']")).click();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//button[@id='searchBtn']")).click();
+              Thread.sleep(5000);
+              
+              driver.findElement(By.xpath("(//span[@class='radio_icon'])[2]")).click();
+              Thread.sleep(2000);
+              
+              driver.findElement(By.xpath("//a[@class='btn btn-lg pull-right btn-primary-red']")).click();
+              Thread.sleep(2000);
+              
+              String A= driver.findElement(By.xpath("(//span[@class='pull-left col-lg-5 col-md-5 col-sm-4 col-xs-4 text-right review_red ng-binding'])[2]")).getText();
+              System.out.println("Total Fare is " +A);
+              
+              driver.close();
+              
+
+       }
+
+}
+
+4)            Axis Bank ( FRAME- NOTIFICATION DISABLER)
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Axis 
+{
+       public static void main(String[] args) throws InterruptedException
+       {
+              System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\SeleniumJava\\chromedriver.exe");
+              ChromeOptions options = new ChromeOptions();
+              options.addArguments("--disable-notifications");
+              WebDriver driver= new ChromeDriver(options);
+              
+              driver.manage().window().maximize();
+              Thread.sleep(2000);
+
+              driver.get("https://www.axisbank.com/personal/calculators/fd-monthly-investment-calculator");
+              Thread.sleep(16000);
+
+                     
+       }
+
+}
+
+For executing ESC operation
+//Robot r=new Robot();
+//r.keyPress(KeyEvent.VK_ESCAPE);
+
+Date Picker:
+
+public static void date_method(String date,WebDriver driver) {
+                                // TODO Auto-generated method stub
+              WebElement table=driver.findElement(By.xpath("//div[@class='monthBlock first' ]/table"));
+              List<WebElement> WebElementvalues= table.findElements(By.tagName("tr"));
+                          int listsize=WebElementvalues.size();
+                          System.out.println(listsize);
+                          OUTER_LOOP:
+                                 for(WebElement listvalue:WebElementvalues)
+                                 {
+                                                 List<WebElement> s=listvalue.findElements(By.tagName("td"));
+                                                 for(WebElement datavalues:s)
+                                                 {
+                                                 String DateValue=datavalues.getText();
+                                                 System.out.println(DateValue);
+                                                 if(DateValue.contains(date))
+                                                 {
+                                                                 System.out.println("verify");
+                                                                datavalues.click();
+                                                                 break OUTER_LOOP;
+                                                 }
+                                 }
+                }
+
+
